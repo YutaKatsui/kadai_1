@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>じゃんけん</title>
+</head>
+<body class="sazaejan">
+    <link rel="stylesheet" href="style.css">
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+
+    <header class="title">じゃんけん</header>
+
+
+
+    <main>
+    <p><img id="jankenpon" src="Sjan.png" width="400" height="200"></p>
+    <button onclick="R_Click(0);"> グー</button>
+    <button onclick="R_Click(1);"> チョキ</button>
+    <button onclick="R_Click(2);"> パー</button>
+    <br />
+    <p><img id="jankenpon2" src="jan.png" width="200" height="200"></p>
+    <div id="Rejan1"></div>
+    <div id="Rejan2"></div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
+    <script>  
+    function R_Click(p_janken_r) {
+        let janken = ['グー','チョキ','パー',];//"janken"のリストを作成します。
+        let janken_r = Math.floor( Math.random() * 3);//Math.random() で乱数を作ります
+
+        let p_janken = ['グー','チョキ','パー'];
+            //勝ち負けの判定機プログラムで
+            if (janken_r === p_janken_r) {
+                Result_end = "あいこです";
+            } else if(p_janken_r === 0 && janken_r === 1) {
+                Result_end = "あなたの【勝ち】";
+            }else if(p_janken_r === 1 && janken_r === 2) {
+                Result_end = "あなたの【勝ち】";
+            }else if(p_janken_r === 2 && janken_r === 0) {
+                Result_end = "あなたの【勝ち】";
+            }else {
+                Result_end = "あなたの【負け】";
+            }
+
+            //結果を表示するためのプログラムです
+            $("#jankenpon")[0].src="S" + janken_r + ".png";
+            $("#Rejan1")[0].innerHTML = p_janken[p_janken_r] +"を選択しました。ジャンケンの結果は・・・？";
+            $("#Rejan2")[0].innerHTML = "相手は" + janken[janken_r] + Result_end;
+            $("#jankenpon2")[0].src="jan" + p_janken_r + ".png";
+        }
+
+    </script>
+</body>
+</html>
